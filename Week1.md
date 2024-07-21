@@ -12,7 +12,7 @@
 
 ## Code:
 
-###Examples
+### Examples
 ```sql
 mysql> CREATE TABLE Student (sno INT(3), sname CHAR(10), class CHAR(5));
 Query OK, 0 rows affected, 1 warning (0.04 sec)
@@ -78,6 +78,7 @@ mysql> describe Student1;
 mysql> DROP TABLE Student1;
 Query OK, 0 rows affected (0.02 sec)
 ```
+### LAB PRACTICE ASSIGNMENT:
 
 ### Question 1
 Create a table EMPLOYEE with following schema:<br>
