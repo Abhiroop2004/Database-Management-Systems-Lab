@@ -11,6 +11,74 @@
 - To understand and use data definition language to write query for a database
 
 ## Code:
+
+###Examples
+```sql
+mysql> CREATE TABLE Student (sno INT(3), sname CHAR(10), class CHAR(5));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> DESCRIBE Student;
++-------+----------+------+-----+---------+-------+
+| Field | Type     | Null | Key | Default | Extra |
++-------+----------+------+-----+---------+-------+
+| sno   | int      | YES  |     | NULL    |       |
+| sname | char(10) | YES  |     | NULL    |       |
+| class | char(5)  | YES  |     | NULL    |       |
++-------+----------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> ALTER TABLE Student ADD (Address CHAR(10));
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Student MODIFY sname VARCHAR(10);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE Student MODIFY class VARCHAR(5);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE student DROP column sname;);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Student;
++---------+------------+------+-----+---------+-------+
+| Field   | Type       | Null | Key | Default | Extra |
++---------+------------+------+-----+---------+-------+
+| sno     | int        | YES  |     | NULL    |       |
+| class   | varchar(5) | YES  |     | NULL    |       |
+| Address | char(10)   | YES  |     | NULL    |       |
++---------+------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Student ADD sname VARCHAR(10);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE student RENAME COLUMN sname to stu_name;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> RENAME TABLE Student TO Student1;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe Student1;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| sno      | int         | YES  |     | NULL    |       |
+| class    | varchar(5)  | YES  |     | NULL    |       |
+| Address  | char(10)    | YES  |     | NULL    |       |
+| stu_name | varchar(10) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> DROP TABLE Student1;
+Query OK, 0 rows affected (0.02 sec)
+```
+
 ### Question 1
 Create a table EMPLOYEE with following schema:<br>
 (Emp_no, E_name, E_address, E_ph_no, Dept_no, Dept_name,Job_id , Salary)
