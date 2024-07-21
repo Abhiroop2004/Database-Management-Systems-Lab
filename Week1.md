@@ -10,9 +10,9 @@
 - To understand the different issues involved in the design and implementation of a database system
 - To understand and use data definition language to write query for a database
 
-##Code:
+## Code:
 
-'''
+```sql
 mysql> create table Employee (Emp_no int primary key, E_name char(20), E_adress char(20), E_ph_no int, Dept_no int, Dept_name char(10), Job_id char(10), Salary int);
 Query OK, 0 rows affected (0.02 sec)
 
@@ -30,4 +30,4 @@ mysql> describe Employee;
 | Salary    | int      | YES  |     | NULL    |       |
 +-----------+----------+------+-----+---------+-------+
 8 rows in set (0.00 sec)
-'''
+```
