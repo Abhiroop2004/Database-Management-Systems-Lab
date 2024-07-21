@@ -12,14 +12,13 @@
 
 ## Code:
 ### Question 1
-Create a table EMPLOYEE with following schema:
+Create a table EMPLOYEE with following schema:<br>
 (Emp_no, E_name, E_address, E_ph_no, Dept_no, Dept_name,Job_id , Salary)
 
 ```sql
 mysql> create table Employee
 (Emp_no int primary key, E_name char(20), E_adress char(20),
-E_ph_no int, Dept_no int, Dept_name char(10), Job_id char(10), Salary int
-);
+E_ph_no int, Dept_no int, Dept_name char(10), Job_id char(10), Salary int);
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> describe Employee;
