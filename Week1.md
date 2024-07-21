@@ -39,7 +39,7 @@ mysql> ALTER TABLE Student MODIFY class VARCHAR(5);
 Query OK, 0 rows affected (0.05 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
-mysql> ALTER TABLE student DROP column sname;);
+mysql> ALTER TABLE student DROP column sname;
 Query OK, 0 rows affected (0.02 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
