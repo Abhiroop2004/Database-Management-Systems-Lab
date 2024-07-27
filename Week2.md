@@ -33,7 +33,8 @@ mysql> describe Department;
 +-----------+----------+------+-----+---------+-------+
 2 rows in set (0.00 sec)
 
-mysql> create table Student(Student_ID int(3) primary key, Name char(10), Dept_ID char(3), GPA float(3), foreign key (Dept_ID) references Department(Dept_ID));
+mysql> create table Student(Student_ID int(3) primary key, Name char(10), Dept_ID char(3), GPA float(3),
+foreign key (Dept_ID) references Department(Dept_ID));
 Query OK, 0 rows affected, 1 warning (0.03 sec)
 
 mysql> describe Student;
@@ -138,7 +139,8 @@ Create a table EMPLOYEE with following schema: <br>
 (Emp_no, E_name, E_address, E_ph_no, Dept_no, Dept_name,Job_id , Salary)
 
 ```sql
-mysql> create table Employee(Emp_no int primary key, E_name char(20), E_adress char(20), E_ph_no int, Dept_no char(3), Dept_name char(10), Job_id char(5), Salary int);
+mysql> create table Employee(Emp_no int primary key, E_name char(20), E_adress char(20), E_ph_no int,
+Dept_no char(3), Dept_name char(10), Job_id char(5), Salary int);
 Query OK, 0 rows affected (0.02 sec)
 
 mysql> describe Employee;
