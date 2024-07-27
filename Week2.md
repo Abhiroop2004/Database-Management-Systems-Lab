@@ -132,3 +132,136 @@ mysql> select distinct Dept_ID from Student;
 +---------+
 2 rows in set (0.00 sec)
 ```
+
+### LAB PRACTICE ASSIGNMENT
+Create a table EMPLOYEE with following schema: <br>
+(Emp_no, E_name, E_address, E_ph_no, Dept_no, Dept_name,Job_id , Salary)
+
+```sql
+mysql> create table Employee(Emp_no int primary key, E_name char(20), E_adress char(20), E_ph_no int, Dept_no char(3), Dept_name char(10), Job_id char(5), Salary int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> describe Employee;
++-----------+----------+------+-----+---------+-------+
+| Field     | Type     | Null | Key | Default | Extra |
++-----------+----------+------+-----+---------+-------+
+| Emp_no    | int      | NO   | PRI | NULL    |       |
+| E_name    | char(20) | YES  |     | NULL    |       |
+| E_adress  | char(20) | YES  |     | NULL    |       |
+| E_ph_no   | int      | YES  |     | NULL    |       |
+| Dept_no   | char(3)  | YES  |     | NULL    |       |
+| Dept_name | char(10) | YES  |     | NULL    |       |
+| Job_id    | char(5)  | YES  |     | NULL    |       |
+| Salary    | int      | YES  |     | NULL    |       |
++-----------+----------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+```
+### Question 1
+Insert at least 5 rows in the table.
+
+```sql
+mysql> insert into Employee values(101, 'Abhiroop', 'Kolkata', 'abhi@gmail.com', 12435836, 'D5', 'Research','R2',80000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Employee values(104, 'Ravi', 'Asansol', 'ravi@gmail.com', 23423542, 'D10', 'Mech','M5',50000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Employee values(106, 'James', 'Pune', 'james@gmail.com', 77563552, 'D10', 'Mech','M4',60000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Employee values(112, 'Vaibhav', 'Noida', 'vbv1@gmail.com', 3256834, 'D6', 'Sales','S4',45000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Employee values(152, 'Megha', 'Chandigarh', 'megha@gmail.com', 31246572, 'D6', 'Sales','S2',75000);
+Query OK, 1 row affected (0.00 sec)
+```
+
+### Question 2
+Display all the information of EMP table.
+
+```sql
+mysql> select * from Employee;
++--------+----------+------------+-----------------+----------+---------+-----------+--------+--------+
+| Emp_no | E_name   | E_adress   | E_email         | E_ph_no  | Dept_no | Dept_name | Job_id | Salary |
++--------+----------+------------+-----------------+----------+---------+-----------+--------+--------+
+|    101 | Abhiroop | Kolkata    | abhi@gmail.com  | 12435836 | D5      | Research  | R2     |  80000 |
+|    104 | Ravi     | Asansol    | ravi@gmail.com  | 23423542 | D10     | Mech      | M5     |  50000 |
+|    106 | James    | Pune       | james@gmail.com | 77563552 | D10     | Mech      | M4     |  60000 |
+|    112 | Vaibhav  | Noida      | vbv1@gmail.com  |  3256834 | D6      | Sales     | S4     |  45000 |
+|    152 | Megha    | Chandigarh | megha@gmail.com | 31246572 | D6      | Sales     | S2     |  75000 |
++--------+----------+------------+-----------------+----------+---------+-----------+--------+--------+
+5 rows in set (0.00 sec)
+```
+
+### Question 3
+Display the record of each employee who works in department D10
+
+```sql
+mysql> select * from Employee where Dept_no='D10';
++--------+--------+----------+-----------------+----------+---------+-----------+--------+--------+
+| Emp_no | E_name | E_adress | E_email         | E_ph_no  | Dept_no | Dept_name | Job_id | Salary |
++--------+--------+----------+-----------------+----------+---------+-----------+--------+--------+
+|    104 | Ravi   | Asansol  | ravi@gmail.com  | 23423542 | D10     | Mech      | M5     |  50000 |
+|    106 | James  | Pune     | james@gmail.com | 77563552 | D10     | Mech      | M4     |  60000 |
++--------+--------+----------+-----------------+----------+---------+-----------+--------+--------+
+2 rows in set (0.00 sec)
+```
+
+### Question 4
+Update the city of Emp_no-12 with current city as Nagpur 
+```sql
+mysql> update Employee set E_adress='Nagpur' where Emp_no=112;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Employee;
++--------+----------+------------+-----------------+----------+---------+-----------+--------+--------+
+| Emp_no | E_name   | E_adress   | E_email         | E_ph_no  | Dept_no | Dept_name | Job_id | Salary |
++--------+----------+------------+-----------------+----------+---------+-----------+--------+--------+
+|    101 | Abhiroop | Kolkata    | abhi@gmail.com  | 12435836 | D5      | Research  | R2     |  80000 |
+|    104 | Ravi     | Asansol    | ravi@gmail.com  | 23423542 | D10     | Mech      | M5     |  50000 |
+|    106 | James    | Pune       | james@gmail.com | 77563552 | D10     | Mech      | M4     |  60000 |
+|    112 | Vaibhav  | Nagpur     | vbv1@gmail.com  |  3256834 | D6      | Sales     | S4     |  45000 |
+|    152 | Megha    | Chandigarh | megha@gmail.com | 31246572 | D6      | Sales     | S2     |  75000 |
++--------+----------+------------+-----------------+----------+---------+-----------+--------+--------+
+5 rows in set (0.00 sec)
+```
+
+### Question 5
+Display the details of Employee who works in department MECH.
+```sql
+mysql> select * from Employee where Dept_name='Mech';
++--------+--------+----------+-----------------+----------+---------+-----------+--------+--------+
+| Emp_no | E_name | E_adress | E_email         | E_ph_no  | Dept_no | Dept_name | Job_id | Salary |
++--------+--------+----------+-----------------+----------+---------+-----------+--------+--------+
+|    104 | Ravi   | Asansol  | ravi@gmail.com  | 23423542 | D10     | Mech      | M5     |  50000 |
+|    106 | James  | Pune     | james@gmail.com | 77563552 | D10     | Mech      | M4     |  60000 |
++--------+--------+----------+-----------------+----------+---------+-----------+--------+--------+
+2 rows in set (0.00 sec)
+```
+
+### Question 6
+Delete the email_id of employee James.
+```sql
+mysql> select E_email from Employee where E_name='James';
++-----------------+
+| E_email         |
++-----------------+
+| james@gmail.com |
++-----------------+
+1 row in set (0.00 sec)
+```
+
+### Question 7
+Display the complete record of employees working in SALES Department
+
+```sql
+mysql> select * from Employee where Dept_name='Sales';
++--------+---------+------------+-----------------+----------+---------+-----------+--------+--------+
+| Emp_no | E_name  | E_adress   | E_email         | E_ph_no  | Dept_no | Dept_name | Job_id | Salary |
++--------+---------+------------+-----------------+----------+---------+-----------+--------+--------+
+|    112 | Vaibhav | Nagpur     | vbv1@gmail.com  |  3256834 | D6      | Sales     | S4     |  45000 |
+|    152 | Megha   | Chandigarh | megha@gmail.com | 31246572 | D6      | Sales     | S2     |  75000 |
++--------+---------+------------+-----------------+----------+---------+-----------+--------+--------+
+2 rows in set (0.00 sec)
+```
