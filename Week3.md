@@ -206,7 +206,8 @@ Create a table EMPLOYEE with the following schema:
 (Emp_no, E_name, E_address, E_ph_no, Dept_no, Dept_name,Job_id, Designation , Salary)
 
 ```sql
-mysql> create table Employee(Emp_no int primary key, E_name char(20), E_adress char(20), E_ph_no int, Dept_no int, Dept_name char(10), Job_id char(5), Join_date date, Designation char(10), Salary int);
+mysql> create table Employee(Emp_no int primary key, E_name char(20), E_adress char(20), E_ph_no int,
+Dept_no int, Dept_name char(10), Job_id char(5), Join_date date, Designation char(10), Salary int);
 Query OK, 0 rows affected (0.03 sec)
 
 mysql> describe Employee;
