@@ -8,7 +8,7 @@
 ## Objective:
 To learn different types of operators.
 ## Code
-## Examples
+### Examples
 ```sql
 mysql> select * from employee;
 +--------+----------+----------+----------+---------+-----------+--------+------------+-------------+--------+
@@ -217,5 +217,96 @@ mysql> select Emp_no, E_name from employee where salary<70000 except select Emp_
 +--------+----------+
 |    116 | Harrison |
 +--------+----------+
+1 row in set (0.00 sec)
+```
+
+### LAB PRACTICE ASSIGNMENT:
+
+```sql
+mysql> select * from employee;
++--------+----------+----------+----------+---------+-----------+--------+------------+-------------+--------+
+| Emp_no | E_name   | E_adress | E_ph_no  | Dept_no | Dept_name | Job_id | Join_date  | Designation | Salary |
++--------+----------+----------+----------+---------+-----------+--------+------------+-------------+--------+
+|    101 | Abhiroop | Kolkata  | 12435836 |      10 | Research  | 110    | 2022-08-05 | Scientist   |  80000 |
+|    104 | Ravi     | Asansol  |  2354234 |      20 | Mech      | 105    | 1992-06-05 | CLERK       |  70000 |
+|    106 | Sames    | Pune     |  2346248 |      20 | Mech      | 102    | 1980-06-05 | MANAGER     | 110000 |
+|    111 | Han      | Patna    |   831656 |      11 | IT        | 115    | 2002-08-05 | NULL        |  65000 |
+|    116 | Harrison | Noida    |  5452948 |      12 | Sales     | 103    | 1990-06-02 | ANALYST     |  60000 |
+|    126 | Sen      | Mumbai   |   521300 |      11 | IT        | 103    | 1985-06-02 | Lead        | 100000 |
++--------+----------+----------+----------+---------+-----------+--------+------------+-------------+--------+
+6 rows in set (0.00 sec)
+
+
+mysql> insert into department values(10, 'Research');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into department values(20, 'Mech');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into department values(11, 'IT');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into department values(15, 'HR');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from department;
++---------+-----------+
+| Dept_no | Dept_name |
++---------+-----------+
+|      10 | Research  |
+|      11 | IT        |
+|      15 | HR        |
+|      20 | Mech      |
++---------+-----------+
+4 rows in set (0.00 sec)
+```
+1. Display all the dept numbers available with the dept and emp tables avoiding duplicates
+```sql
+mysql> select Dept_no from department union select Dept_no from Employee;
++---------+
+| Dept_no |
++---------+
+|      10 |
+|      11 |
+|      15 |
+|      20 |
+|      12 |
++---------+
+5 rows in set (0.00 sec)
+```
+2. Display all the dept numbers available with the dept and emp tables.
+```sql
+mysql> select Dept_no from department union all select Dept_no from Employee;
++---------+
+| Dept_no |
++---------+
+|      10 |
+|      11 |
+|      15 |
+|      20 |
+|      10 |
+|      20 |
+|      11 |
+|      12 |
++---------+
+3 rows in set (0.00 sec)
+```
+
+3. Display all the dept numbers available in emp and not in dept tables and vice versa.
+```sql
+mysql> select Dept_no from department except select Dept_no from Employee;
++---------+
+| Dept_no |
++---------+
+|      15 |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select Dept_no from Employee except select Dept_no from department;
++---------+
+| Dept_no |
++---------+
+|      12 |
++---------+
 1 row in set (0.00 sec)
 ```
