@@ -63,6 +63,9 @@ Query OK, 1 row affected (0.00 sec)
 mysql> insert into reserves values(105, 101, '24-08-25');
 Query OK, 1 row affected (0.00 sec)
 
+mysql> insert into reserves values(111, 81, '24-08-21');
+Query OK, 1 row affected (0.00 sec)
+
 mysql> select * from reserves;
 +------+------+------------+
 | sid  | bid  | day        |
@@ -71,6 +74,59 @@ mysql> select * from reserves;
 |  111 |   51 | 2024-08-21 |
 |  130 |   81 | 2024-08-25 |
 |  105 |  101 | 2024-08-25 |
+|  111 |   81 | 2024-08-21 |
 +------+------+------------+
-4 rows in set (0.00 sec)
+5 rows in set (0.00 sec)
+
+```
+
+```
+mysql> select * from Sailors s join reserves r on s.sid=r.sid where r.bid = 101;
++-----+-------+--------+------+------+------+------------+
+| sid | sname | rating | age  | sid  | bid  | day        |
++-----+-------+--------+------+------+------+------------+
+| 105 | Bob   |      4 |   22 |  105 |  101 | 2024-08-25 |
++-----+-------+--------+------+------+------+------------+
+1 row in set (0.01 sec)
+
+mysql> select b.bname from boats b join reserves r on b.bid = r.bid
+    -> join sailors s on r.sid = s.sid where s.sname = 'Bob';
++--------+
+| bname  |
++--------+
+| Utopia |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select s.sname from sailors s
+    -> join reserves r on s.sid = r.sid join boats b on r.bid = b.bid
+    -> where b.color = 'red'
+    -> order by s.age;
++-------+
+| sname |
++-------+
+| Bob   |
++-------+
+1 row in set (0.01 sec)
+
+mysql> select distinct s.sname from sailors s join reserves r on s.sid = r.sid;
++-------+
+| sname |
++-------+
+| Tim   |
+| Bob   |
+| Nabab |
+| Lim   |
++-------+
+4 rows in set (0.01 sec)
+
+mysql> select distinct s.sid, s.sname from sailors s
+    -> join reserves r1 on s.sid = r1.sid join reserves r2 on s.sid = r2.sid
+    -> where r1.day = r2.day and r1.bid <> r2.bid;
++-----+-------+
+| sid | sname |
++-----+-------+
+| 111 | Nabab |
++-----+-------+
+1 row in set (0.00 sec)
 ```
