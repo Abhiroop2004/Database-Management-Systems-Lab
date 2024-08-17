@@ -129,4 +129,56 @@ mysql> select distinct s.sid, s.sname from sailors s
 | 111 | Nabab |
 +-----+-------+
 1 row in set (0.00 sec)
+
+mysql> select distinct s.sid from sailors s
+    -> join reserves r on s.sid = r.sid
+    -> join boats b on r.bid = b.bid
+    -> where b.color in ('red', 'green');
++-----+
+| sid |
++-----+
+| 111 |
+| 105 |
++-----+
+2 rows in set (0.00 sec)
+
+mysql> select s.sname, s.age
+    -> from sailors s
+    -> where s.age = (select min(age) from sailors);
++-------+------+
+| sname | age  |
++-------+------+
+| Bob   |   22 |
++-------+------+
+1 row in set (0.01 sec)
+
+mysql> select count(distinct sname) as Number_of_Sailor_Names
+    -> from sailors;
++------------------------+
+| Number_of_Sailor_Names |
++------------------------+
+|                      4 |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select rating, AVG(age) as average_age
+    -> from sailors
+    -> group by rating;
++--------+-------------+
+| rating | average_age |
++--------+-------------+
+|      3 |     25.0000 |
+|      4 |     22.5000 |
+|      2 |     26.0000 |
++--------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> select rating, avg(age) as avg_age from sailors group by rating
+    -> having count(sid) >= 2;
++--------+---------+
+| rating | avg_age |
++--------+---------+
+|      4 | 22.5000 |
++--------+---------+
+1 row in set (0.00 sec)
 ```
