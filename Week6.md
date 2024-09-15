@@ -61,7 +61,8 @@ mysql> SELECT job_category, SUM(salary) AS total_salary FROM employees GROUP BY 
 
 2. Display lowest paid employee details under each manager.
 ```sql
-mysql> SELECT * from employees e WHERE salary=(SELECT MIN(salary) FROM employees WHERE manager_id=e.manager_id) ORDER BY manager_id;
+mysql> SELECT * from employees e WHERE salary=(SELECT MIN(salary)
+    -> FROM employees WHERE manager_id=e.manager_id) ORDER BY manager_id;
 +--------+-------------+--------+--------------+------------+---------+
 | emp_id | emp_name    | salary | job_category | manager_id | dept_id |
 +--------+-------------+--------+--------------+------------+---------+
