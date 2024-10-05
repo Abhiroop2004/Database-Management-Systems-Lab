@@ -13,7 +13,7 @@ Consider the following schema:
     Boats (bid, bname, color)
     Reserves (sid, bid, day(date))
 
-```
+```sql
 mysql> create table Sailors (sid int primary key, sname char(10), rating int, age int);
 Query OK, 0 rows affected (0.10 sec)
 
@@ -96,7 +96,7 @@ mysql> select * from reserves;
 **Write subquery statement for the following queries.**
 
 1. Find all information of sailors who have reserved boat number 101.
-```
+```sql
 mysql> select * from sailors where sid in (select sid from reserves where bid = 101);
 +-----+-------+--------+------+
 | sid | sname | rating | age  |
@@ -106,7 +106,7 @@ mysql> select * from sailors where sid in (select sid from reserves where bid = 
 1 row in set (0.00 sec)
 ```
 2. Find the name of boat reserved by Bob.
-```
+```sql
 mysql> select bname from boats where bid in(
     -> select bid from reserves where sid =
     -> (select sid from sailors where sname = 'Bob'));
@@ -118,7 +118,7 @@ mysql> select bname from boats where bid in(
 1 row in set (0.00 sec)
 ```
 3. Find the names of sailors who have reserved a red boat, and list in the order of age.
-```
+```sql
 mysql> select sname from sailors where sid in
     -> (select sid from reserves where bid in
     -> (select bid from boats where color ='red'))
@@ -131,7 +131,7 @@ mysql> select sname from sailors where sid in
 1 row in set (0.00 sec)
 ```
 4. Find the names of sailors who have reserved at least one boat
-```
+```sql
 mysql> select sname from sailors
     -> where sid in
     -> (select distinct sid from Reserves);
@@ -146,7 +146,7 @@ mysql> select sname from sailors
 4 rows in set (0.00 sec)
 ```
 5. Find the ids and names of sailors who have reserved two different boats on the same day.
-```
+```sql
 mysql> select sid, sname from sailors
     -> where sid in( select sid
     -> from reserves R1 where exists(
@@ -160,7 +160,7 @@ mysql> select sid, sname from sailors
 1 row in set (0.00 sec)
 ```
 6. Find the ids of sailors who have reserved a red boat or a green boat
-```
+```sql
 mysql> select sid from sailors where sid in
     -> (select sid from reserves where bid in
     -> (select bid from boats where color in ('Red', 'Green')));
@@ -173,7 +173,7 @@ mysql> select sid from sailors where sid in
 2 rows in set (0.00 sec)
 ```
 7. Find the name and the age of the youngest sailor.
-```
+```sql
 mysql> select sname, age from sailors
     -> where age = ( select min(age) from sailors);
 +-------+------+
@@ -184,7 +184,7 @@ mysql> select sname, age from sailors
 1 row in set (0.00 sec)
 ```
 8. Count the number of different sailor names.
-```
+```sql
 mysql> select count(distinct sname) as Number_of_Sailor_Names from sailors;
 +------------------------+
 | Number_of_Sailor_Names |
@@ -194,7 +194,7 @@ mysql> select count(distinct sname) as Number_of_Sailor_Names from sailors;
 1 row in set (0.00 sec)
 ```
 9. Find the average age of sailors for each rating level.
-```
+```sql
 mysql> select rating, avg(age) as average_age
     -> from sailors where rating in ( select distinct rating from sailors)
     -> group by rating;
@@ -208,7 +208,7 @@ mysql> select rating, avg(age) as average_age
 3 rows in set (0.00 sec)
 ```
 10. Find the average age of sailors for each rating level that has at least two sailors.
-```
+```sql
 mysql> select rating, avg(age) as avg_age from sailors
     -> where rating in (select rating from sailors group by rating
     -> having count(sid) >= 2) group by rating;
